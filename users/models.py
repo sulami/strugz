@@ -1,3 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from services.models import Service
 
-# Create your models here.
+class User(AbstractUser):
+    provider = models.BooleanField(default=False)
+    favourites = models.ManyToManyField(Service, related_name='favourites')
+
