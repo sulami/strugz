@@ -1,0 +1,22 @@
+/*RESPONSIVE STYLES*/
+@media (max-width:767px) , (max-device-width:800px)
+{
+	#header, #content, #foot-cont { width: 100% !important; }
+	#div-menue ul li a , #div-menue ul li{ min-width: 101px;}
+	#div-menue ul li { float: none;}
+}
+@media (max-device-width:800px)
+{
+	/*.classname {atrribute: value;}*/
+}
+
+@media (min-width:768px) and (max-width:979px)
+{
+	#header, #content, #foot-cont { width: 700px !important; }
+	#div-menue ul li a , #div-menue ul li{ width: 140px;}
+}
+@media (min-width:1600px)
+{
+	#header, #content, #foot-cont { width: 1500px; }
+	#div-menue ul li a, #div-menue ul li { width: 300px;}
+}
