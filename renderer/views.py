@@ -69,13 +69,13 @@ def service(request, service_id):
     service = get_object_or_404(Service, pk=service_id)
     context = {}
     # Kontaktdaten wurden abgerufen, Captcha auslesen
-    context['contact'] = 0
-    if request.method == 'POST':
-        form = CaptchaForm(request.POST)
-        if form.is_valid():
-            context['contact'] = 1
-    else:
-        form = CaptchaForm()
+    # context['contact'] = 0
+    # if request.method == 'POST':
+    #     form = CaptchaForm(request.POST)
+    #     if form.is_valid():
+    #         context['contact'] = 1
+    # else:
+    #     form = CaptchaForm()
     # Nutzer ist eingeloggt, hole bestehende Bewertung falls vorhanden
     if request.user.is_authenticated:
         try:
@@ -105,6 +105,6 @@ def service(request, service_id):
         ratings = paginator.page(paginator.num_pages)
     context['service'] = service
     context['ratings'] = ratings
-    context['form'] = form
+    # context['form'] = form
     return render(request, 'services/service.html', context)
 

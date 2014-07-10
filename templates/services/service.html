@@ -10,7 +10,7 @@
     {% if contact == 0 %}
     <form action="." method="POST">
         {% csrf_token %}
-        {{ form }}
+        {#{{ form }} #}
         <input type="submit" />
     </form>
     {% else %}
