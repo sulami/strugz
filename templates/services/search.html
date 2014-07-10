@@ -5,7 +5,7 @@
 {% block content %}
     <h1>Suche nach {{ category }}</h1>
     Bitte geben Sie ihre Postleitzahl ein:<br>
-    <form action="{% url 'master:category' category.pk %}" method="GET">
+    <form action="{% url 'renderer:category' category.pk %}" method="GET">
         <input type="text" name="plz">
         <input type="submit" name="submit">
     </form>

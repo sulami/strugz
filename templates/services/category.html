@@ -5,7 +5,7 @@
     <h1>{{ category }} nahe {{ plz.plz }}, {{ plz.name }}</h1>
     {% for service in servicelist %}
         <li>
-        <a href="{% url 'master:service' service.1.pk %}">{{ service.1 }}</a>
+        <a href="{% url 'renderer:service' service.1.pk %}">{{ service.1 }}</a>
         {{ service.1.average_rating }} Sterne
         {{ service.0 }} Km
         </li>
