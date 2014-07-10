@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    {% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'nd-style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'nd-responsive.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/ArchitectsDaughter/stylesheet.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/PTSansNarrow_bold/stylesheet.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/PTSansNarrow_regular/stylesheet.css' %}">
+    <title>{% block title %}{% endblock %}Nothilfe</title>
+</head>
+<body>
+<div id="wrapper">
+	<header id="header">
+		<!-- MENUE -->
+		<div id="div-menue">
+			<ul id="menue" class="ul-menue">
+				<li>
+					<a href="{% url 'master:index' %}">Suchen</a>
+				</li>
+				<li>
+					<a href="business">Gewerbetreibende</a>
+				</li>
+				<li>
+					<a href="user">Benutzer</a>
+				</li>
+				<li>
+					<a href="impressum">Impressum</a>
+				</li>
+				<li>
+					<a href="contact">Kontakt</a>
+				</li>
+			</ul>
+			<div style="clear:left;"></div>
+		</div>
+		<div id="head-cont">
+			HEAD CONTENT
+		</div>
+	</header>
+	<div id="content">
+		{% if user.is_authenticated %}
+			Wilkommen zurück,
+			{% if user.first_name %}
+				{{ user.first_name }}
+			{% else %}
+				{{ user.username }}
+			{% endif %}
+				<a href="{% url 'auth_logout' %}">Logout</a>
+			{% else %}
+				Welcome, Guest
+				<a href="{% url 'auth_login' %}">Login</a>
+		{% endif %}
+		{% block content %}
+			Wenn dies sichtbar ist, fehlt der Content-Block.
+		{% endblock %}
+	</div>
+	<footer id="footer">
+		<!-- FOOTER CONTENT -->
+		<div id="foot-cont">
+			Notdienste &copy; 2014 | Impressum
+		</div>
+	</footer>
+</div>
+</body>
+</html>

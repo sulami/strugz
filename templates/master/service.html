@@ -1,0 +1,60 @@
+{% extends 'skeleton.html' %}
+
+{% block title %}{{ service }} - {% endblock %}
+
+{% block content %}
+    <h1>{{ service }}</h1>
+    </p>{{ service.desc }}</p>
+    <a href="{{ service.website }}" target="new">Unsere Website</a>
+    <br>
+    {% if contact == 0 %}
+    <form action="." method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" />
+    </form>
+    {% else %}
+        <h3>Kontakt:</h3>
+        Telefon: {{ service.tel }}
+    {% endif %}
+    {% if user.is_authenticated %}
+        <p>
+        <form action="" method="GET">
+            Bewerten:
+            <input type="radio" name="r" value="1"{% if rating.stars == 1 %} checked{% endif %}>1</option>
+            <input type="radio" name="r" value="2"{% if rating.stars == 2 %} checked{% endif %}>2</option>
+            <input type="radio" name="r" value="3"{% if rating.stars == 3 %} checked{% endif %}>3</option>
+            <input type="radio" name="r" value="4"{% if rating.stars == 4 %} checked{% endif %}>4</option>
+            <input type="radio" name="r" value="5"{% if rating.stars == 5 %} checked{% endif %}>5</option>
+            Sterne
+            <br>
+            <textarea name="rt">{{ rating.text }}</textarea>
+            <input type="submit">
+        </form>
+        </p>
+    {% endif %}
+    {% if ratings %}
+    <p>Durchschnittliche Bewertung: {{ service.average_rating }}</p>
+    <h2>Bewertungen</h2>
+        {% for rating in ratings %}
+            <h3>{{ rating.by }}</h3>
+            <span style="font-size: 85%">
+                {{ rating.stars }} Sterne - {{ rating.at }}
+            </span>
+            {% if rating.text %}
+                <p>{{ rating.text }}</p>
+            {% endif %}
+        {% endfor %}
+        <br>
+        {% if ratings.has_previous %}
+            <a href="?&p={{ ratings.previous_page_number }}">Zurück</a>
+        {% endif %}
+        <span class="current">
+            Seite {{ ratings.number }} von {{ ratings.paginator.num_pages }}
+        </span>
+        {% if ratings.has_next %}
+            <a href="?&p={{ ratings.next_page_number }}">Vor</a>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+

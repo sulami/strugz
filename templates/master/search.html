@@ -1,0 +1,13 @@
+{% extends 'skeleton.html' %}
+
+{% block title %}Suche nach {{ category }} - {% endblock %}
+
+{% block content %}
+    <h1>Suche nach {{ category }}</h1>
+    Bitte geben Sie ihre Postleitzahl ein:<br>
+    <form action="{% url 'master:category' category.pk %}" method="GET">
+        <input type="text" name="plz">
+        <input type="submit" name="submit">
+    </form>
+{% endblock %}
+

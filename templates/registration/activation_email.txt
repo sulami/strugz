@@ -1,0 +1,13 @@
+Hallo,
+
+du hast dich bei Nothlife registriert. Um deine Registrierung abzuschließen,
+klicke auf diesen Link:
+
+http://localhost:8000/{% url 'registration_activate' activation_key %}
+
+Du hast {{ expiration_days }} Tage Zeit um deinen Account zu aktivieren.
+
+Grüße,
+
+deine Nothilfe
+

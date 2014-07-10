@@ -1,0 +1,15 @@
+{% extends 'skeleton.html' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <form method="POST" action=".">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit"/>
+        <input type="hidden" name="next" value="/" />
+    </form>
+    <p><a href="{% url 'auth_password_reset' %}">Passwort vergessen?</a></p>
+    <p><a href="{% url 'registration_register' %}">Registrieren</a></p>
+{% endblock %}
+

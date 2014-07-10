@@ -1,0 +1,10 @@
+{% extends 'skeleton.html' %}
+
+{% block content %}
+    {% if account %}
+        <p>Account erfolgreich aktiviert.</p>
+        <p><a href="{% url 'auth_login' %}">Log in</a></p>
+    {% else %}
+        <p>Accountaktivierung fehlgeschlagen</p>
+    {% endif %}
+{% endblock %}
