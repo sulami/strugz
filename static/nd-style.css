@@ -10,7 +10,7 @@ html {
 
 body {
     font-size:1.1em;
-    font-family: 'PTSans', sans-serif;
+    font-family: 'PT Sans', sans-serif;
     color:#000;
     text-align:left;
     line-height: 1.5em;
@@ -126,16 +126,49 @@ body
     width: 195px;
     color: #fff;
     background: #344046;
-    transition: all 1s;
-    -webkit-transition: all 1s; /* Safari */
+    transition: all .5s;
+    -webkit-transition: all .5s; /* Safari */
 }
 #div-menue ul li a:hover
 {
-    background: #3498db;
+    background: #859aa5;
+}
+div#user {
+    background-color: #859aa5;
+    color: #fff;
+    font-size: 80%;
+    padding-right: 10px;
+    text-align: right;
+}
+div#user a {
+    color: inherit;
+}
+div#user a:hover {
+    color: #344046;
+    transition: all .5s;
+    -webkit-transition: all .5s; /* Safari */
 }
 #content
 {
     background: #fff;
+    min-height: 300px;
+}
+div#content-text {
+    padding: 10px;
+}
+h1#intro {
+    text-align: center;
+}
+ul#intro {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ul#intro li {
+    display: inline;
+}
+ul#intro li img {
+    width: calc((100% - 20px) / 4);
 }
 #footer
 {
@@ -146,3 +179,4 @@ body
 {
     text-transform: uppercase;
 }
+
