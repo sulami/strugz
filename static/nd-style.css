@@ -172,6 +172,18 @@ ul#intro li {
 ul#intro li img {
     width: calc((100% - 20px) / 4);
 }
+ol#search-results {
+    list-style-type: none;
+}
+ol#search-results li {
+    transition: all .5s;
+    -webkit-transition: all .5s; /* Safari */
+}
+ol#search-results li:hover {
+    background-color: #859AA5;
+    transition: all .5s;
+    -webkit-transition: all .5s; /* Safari */
+}
 #footer
 {
     background: rgb(37,43,47);

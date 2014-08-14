@@ -2,23 +2,27 @@
 {% block title %}{{ category }} - {% endblock %}
 
 {% block content %}
-    <h1>{{ category }} nahe {{ plz.plz }}, {{ plz.name }}</h1>
-    {% for service in servicelist %}
-        <li>
-        <a href="{% url 'renderer:service' service.1.pk %}">{{ service.1 }}</a>
-        {{ service.1.average_rating }} Sterne
-        {{ service.0 }} Km
-        </li>
-    {% endfor %}
-    <br>
-    {% if servicelist.has_previous %}
-        <a href="?plz={{ plz.plz }}&p={{ servicelist.previous_page_number }}">Zurück</a>
-    {% endif %}
-    <span class="current">
-        Seite {{ servicelist.number }} von {{ servicelist.paginator.num_pages }}
-    </span>
-    {% if servicelist.has_next %}
-        <a href="?plz={{ plz.plz }}&p={{ servicelist.next_page_number }}">Vor</a>
-    {% endif %}
+    <div id="content-text">
+        <h1>{{ category }} nahe {{ plz.plz }}, {{ plz.name }}</h1>
+        <ol id="search-results">
+        {% for service in servicelist %}
+            <li>
+            <a href="{% url 'renderer:service' service.1.pk %}">{{ service.1 }}</a>
+            {{ service.1.average_rating }} Sterne
+            {{ service.0 }} Km
+            </li>
+        {% endfor %}
+        </ol>
+        <br>
+        {% if servicelist.has_previous %}
+            <a href="?plz={{ plz.plz }}&p={{ servicelist.previous_page_number }}">Zurück</a>
+        {% endif %}
+        <span class="current">
+            Seite {{ servicelist.number }} von {{ servicelist.paginator.num_pages }}
+        </span>
+        {% if servicelist.has_next %}
+            <a href="?plz={{ plz.plz }}&p={{ servicelist.next_page_number }}">Vor</a>
+        {% endif %}
+    </div>
 {% endblock %}
 
