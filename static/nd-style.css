@@ -1,78 +1,78 @@
-/*========================================================================	
+/*========================================================================
 === font settings
 ========================================================================*/
 
-html { 
-	-webkit-text-size-adjust:100%; 
-	-ms-text-size-adjust:100%;
-	background: #f3f2f1;
+html {
+    -webkit-text-size-adjust:100%;
+    -ms-text-size-adjust:100%;
+    background: #f3f2f1;
 }
 
 body {
-	font-size:1.1em;
-	font-family: 'PTSans', sans-serif;
-	color:#000;
-	text-align:left;
-	line-height: 1.5em;
+    font-size:1.1em;
+    font-family: 'PTSans', sans-serif;
+    color:#000;
+    text-align:left;
+    line-height: 1.5em;
 }
 
 input, button, textaera, select {
-	font-family: inherit;
-	font-size:99%;
-	font-weight:inherit;	
+    font-family: inherit;
+    font-size:99%;
+    font-weight:inherit;
 }
 
 pre, code {
-	font-family:"Courier New", Courier, monospace;
+    font-family:"Courier New", Courier, monospace;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-weight: normal;
+    font-weight: normal;
 }
 
 
 h1 {
-	font-size: 2em;
-	line-height: 1.2em;
-	margin-top: 0.6em;  
-	margin-bottom: 0.6em;
+    font-size: 2em;
+    line-height: 1.2em;
+    margin-top: 0.6em;
+    margin-bottom: 0.6em;
 }
 
 h2 {
-	font-size: 1.75em;  
-	line-height: 1.7143em;
-	margin-top: 0.857em;  
-	margin-bottom: 0.857em;
+    font-size: 1.75em;
+    line-height: 1.7143em;
+    margin-top: 0.857em;
+    margin-bottom: 0.857em;
 }
 
 h3 {
-	font-size: 1.5em;
-	line-height: 1.0000em;
-	margin-top: 1.0000em;  
-	margin-bottom: 1.0000em;
+    font-size: 1.5em;
+    line-height: 1.0000em;
+    margin-top: 1.0000em;
+    margin-bottom: 1.0000em;
 }
 
 h4 {
-	font-size: 1.25em;
-	line-height: 1.2000em;
-	margin-top: 1.2000em;  
-	margin-bottom: 0.2000em;
+    font-size: 1.25em;
+    line-height: 1.2000em;
+    margin-top: 1.2000em;
+    margin-bottom: 0.2000em;
 }
 
 h5 {
-	font-size: 1.125em;
-	line-height: 1.3333em;
-	margin-top: 1.3333em;  
-	margin-bottom: 1.3333em;
+    font-size: 1.125em;
+    line-height: 1.3333em;
+    margin-top: 1.3333em;
+    margin-bottom: 1.3333em;
 }
 
 h6 {
-	font-family: 'PTSansBold', sans-serif;
-	font-weight: bold;
-	font-size: 1em;
-	line-height: 1.5000em;
-	margin-top: 1.5000em;  
-	margin-bottom: 1.5000em;
+    font-family: 'PTSansBold', sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    line-height: 1.5000em;
+    margin-top: 1.5000em;
+    margin-bottom: 1.5000em;
 }
 
 
@@ -80,69 +80,69 @@ table {font-size: inherit;}
 caption, th {font-weight: bold;}
 
 sup {
-	font-size: 60%;
-	position: relative;
-	top:-7px;
+    font-size: 60%;
+    position: relative;
+    top:-7px;
 }
 
-/*========================================================================	
+/*========================================================================
 === Style settings
 ========================================================================*/
 
 body
 {
-	background: #e1e1e1;
-	margin: 0px;
+    background: #e1e1e1;
+    margin: 0px;
 }
 #header, #content, #foot-cont
 {
-	position: relative;
-	width: 975px;
-	margin: 0 auto;
+    position: relative;
+    width: 975px;
+    margin: 0 auto;
 }
 #div-menue
 {
-	position: relative;
+    position: relative;
 }
 #div-menue ul
 {
-	list-style-type: none;
-	padding-left: 0px;
-	margin: 0 auto;
+    list-style-type: none;
+    padding-left: 0px;
+    margin: 0 auto;
 }
 #div-menue ul li
 {
-	float: left;
-	width: 195px;
-	padding: 0 0;
-	text-align: center;
+    float: left;
+    width: 195px;
+    padding: 0 0;
+    text-align: center;
 }
 #div-menue ul li a
 {
-	display: inline-block;
-	text-decoration: none;
-	padding: 20px 0px;
-	text-transform: uppercase;
-	width: 195px;
-	color: #fff;
-	background: #344046;
-	transition: all 1s;
-	-webkit-transition: all 1s; /* Safari */
+    display: inline-block;
+    text-decoration: none;
+    padding: 20px 0px;
+    text-transform: uppercase;
+    width: 195px;
+    color: #fff;
+    background: #344046;
+    transition: all 1s;
+    -webkit-transition: all 1s; /* Safari */
 }
 #div-menue ul li a:hover
 {
-	background: #3498db;
+    background: #3498db;
 }
 #content
 {
-	background: #fff;
+    background: #fff;
 }
 #footer
 {
-	background: rgb(37,43,47);
-	color: #fff;
+    background: rgb(37,43,47);
+    color: #fff;
 }
 #foot-cont
 {
-	text-transform: uppercase;
+    text-transform: uppercase;
 }
