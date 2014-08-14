@@ -142,6 +142,8 @@ div#user {
 }
 div#user a {
     color: inherit;
+    transition: all .5s;
+    -webkit-transition: all .5s; /* Safari */
 }
 div#user a:hover {
     color: #344046;
