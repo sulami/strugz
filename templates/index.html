@@ -3,11 +3,15 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    <h1>Willkommen bei der Nothilfe</h1>
-    {% for category in categories %}
-        <li>
-        <a href="{% url 'renderer:search' category.pk %}">{{ category }}</a>
-        </li>
-    {% endfor %}
+    <div id="content-text">
+        <h1 id="intro">Welche Art Dienst ben&ouml;tigen Sie?</h1>
+        <ul id="intro">
+        {% for category in categories %}
+            <li>
+            <a href="{% url 'renderer:search' category.pk %}">{{ category }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
 
