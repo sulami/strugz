@@ -186,6 +186,9 @@ ol#search-results li a {
     color: inherit;
     padding-left: 5px;
 }
+div#pagination {
+    text-align: center;
+}
 #footer
 {
     background: rgb(37,43,47);
