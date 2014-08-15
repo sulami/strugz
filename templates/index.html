@@ -3,15 +3,13 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    <div id="content-text">
-        <h1 id="intro">Welche Art Dienst ben&ouml;tigen Sie?</h1>
-        <ul id="intro">
-        {% for category in categories %}
-            <li>
-            <a href="{% url 'renderer:search' category.pk %}">{{ category }}</a>
-            </li>
-        {% endfor %}
-        </ul>
-    </div>
+    <h1 id="intro">Welche Art Dienst ben&ouml;tigen Sie?</h1>
+    <ul id="intro">
+    {% for category in categories %}
+        <li>
+        <a href="{% url 'renderer:search' category.pk %}">{{ category }}</a>
+        </li>
+    {% endfor %}
+    </ul>
 {% endblock %}
 
