@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from math import sqrt
 
+from notdienste.settings import SUPPORT_EMAIL
 from services.models import *
 # from .forms import CaptchaForm
 
@@ -24,7 +25,8 @@ def category(request, category_id):
         plz = Location.objects.get(plz=request.GET['plz'])
     except:
         error = """Dies scheint keine uns bekannte Postleitzahl zu sein. Im \
-        Falle eines Fehlers kontaktieren sie uns bitte unter support-email."""
+        Falle eines Fehlers kontaktieren sie uns bitte unter %s.""" % \
+        SUPPORT_EMAIL
         return render(request, 'error.html', {'error': error})
     services = Service.objects.filter(category=category)
     # GPS-Koordinaten aus DB lesen und zuweisen, Entfernungsberechnung
