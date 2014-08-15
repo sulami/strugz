@@ -32,6 +32,11 @@
             <input type="submit">
         </form>
         </p>
+    {% else %}
+        <p>
+        <a href="{% url 'auth_login' %}">Login / Registrieren</a>
+        zum Bewerten.
+        </p>
     {% endif %}
     {% if ratings %}
     <p>Durchschnittliche Bewertung: {{ service.average_rating }}</p>
