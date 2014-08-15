@@ -2,7 +2,7 @@
 {% block title %}{{ category }} - {% endblock %}
 
 {% block content %}
-    <h1>{{ category }} nahe {{ plz.plz }}, {{ plz.name }}</h1>
+    <h1 class="center">{{ category }} nahe {{ plz.plz }}, {{ plz.name }}</h1>
     <ol id="search-results">
     {% for service in servicelist %}
         <li>
