@@ -7,8 +7,8 @@
     {% for service in servicelist %}
         <li>
         <a href="{% url 'renderer:service' service.1.pk %}">{{ service.1 }}</a>
-        {{ service.1.average_rating }} Sterne
-        {{ service.0 }} Km
+        - {{ service.1.average_rating }} Sterne
+        - {{ service.0 }} Km
         </li>
     {% endfor %}
     </ol>
