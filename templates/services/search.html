@@ -4,10 +4,11 @@
 
 {% block content %}
     <h1 class="center">Suche nach {{ category }}</h1>
-    Bitte geben Sie ihre Postleitzahl ein:<br>
+    <div class="center">
     <form action="{% url 'renderer:category' category.pk %}" method="GET">
-        <input type="text" name="plz">
-        <input type="submit" name="submit">
+        <input type="text" name="plz" placeholder="Postleitzahl">
+        <input type="submit" name="submit" value="Suchen">
     </form>
+    </div>
 {% endblock %}
 

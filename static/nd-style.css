@@ -155,7 +155,7 @@ div#user a:hover {
     background: #fff;
     min-height: 300px;
 }
-h1.center {
+.center {
     text-align: center;
 }
 ul#intro {
