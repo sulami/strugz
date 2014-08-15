@@ -42,10 +42,10 @@
                 {% else %}
                     {{ user.username }}
                 {% endif %}
-                    <a href="{% url 'auth_logout' %}">Logout</a>
+                    | <a href="{% url 'auth_logout' %}">Logout</a>
                 {% else %}
                     Willkommen Gast
-                    <a href="{% url 'auth_login' %}">Login</a>
+                    | <a href="{% url 'auth_login' %}">Login / Registrieren</a>
             {% endif %}
         </div>
         {% block content %}
