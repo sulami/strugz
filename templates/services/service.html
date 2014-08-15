@@ -4,9 +4,12 @@
 
 {% block content %}
     <h1 class="center">{{ service }}</h1>
-    </p>{{ service.desc }}</p>
-    <a href="{{ service.website }}" target="new">Unsere Website</a>
-    <br>
+    <div class="indent">
+        <p>
+            {{ service.desc }}
+        </p>
+        <a href="{{ service.website }}" target="new">Unsere Website</a>
+    </div>
     {% if contact == 0 %}
     <form action="." method="POST">
         {% csrf_token %}
@@ -14,8 +17,8 @@
         <input type="submit" />
     </form>
     {% else %}
-        <h3>Kontakt:</h3>
-        Telefon: {{ service.tel }}
+        <h3 class="indent">Kontakt:</h3>
+        <p class="indent">Telefon: {{ service.tel }}</p>
     {% endif %}
     {% if user.is_authenticated %}
         <p>

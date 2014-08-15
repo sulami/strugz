@@ -189,6 +189,12 @@ ol#search-results li a {
 div#pagination {
     text-align: center;
 }
+h3.indent {
+    padding-left: 5px;
+}
+div.indent, p.indent {
+    padding-left: 10px;
+}
 #footer
 {
     background: rgb(37,43,47);
