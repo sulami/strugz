@@ -125,6 +125,6 @@ def checkout(request):
 
     pm = PAYMENT_BACKEND.create_payment_method(request.user,
             request.POST.get('payment_method_nonce'))
-    PAYMENT_BACKEND.create_transaction('10.00', pm.payment_method_token)
+    PAYMENT_BACKEND.create_transaction('10.00', pm.payment_method.token)
     return render(request, 'services/payment_complete.html')
 
