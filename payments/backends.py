@@ -27,15 +27,16 @@ class BraintreeBackend:
         else:
             raise Exception('Could not create customer')
 
-    def create_payment_method(self, nonce, custid):
+    def create_payment_method(self, user, nonce):
         """Pass customer payment information to the Braintree Vault"""
         return braintree.PaymentMethod.create({
-            'customer_id': custid,
+            'customer_id': str(user.pk),
             'payment_method_nonce': nonce,
         })
 
-    def create_transaction(self, amount, nonce):
+    def create_transaction(self, amount, token):
         return braintree.Transaction.sale({
             'amount': amount,
+            'payment_method_token': token,
         })
 
