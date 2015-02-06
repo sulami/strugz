@@ -1,0 +1,14 @@
+{% extends 'skeleton.html' %}
+
+{% block content %}
+<script src="https://js.braintreegateway.com/v2/braintree.js"></script>
+<form id="checkout" method="post" action="{% url 'renderer:checkout' %}">
+    {% csrf_token %}
+    <div id="dropin"></div>
+    <input type="submit" value="Pay $10">
+</form>
+<script>
+braintree.setup("{{ token }}", 'dropin', { container: 'dropin' });
+</script>
+{% endblock %}
+

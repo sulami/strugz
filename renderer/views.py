@@ -4,7 +4,10 @@ from math import sqrt
 
 from notdienste.settings import SUPPORT_EMAIL
 from services.models import *
+from payments.backends import BraintreeBackend
 # from .forms import CaptchaForm
+
+PAYMENT_BACKEND = BraintreeBackend()
 
 def index(request):
     categories = Category.objects.all()
@@ -109,4 +112,19 @@ def service(request, service_id):
     context['ratings'] = ratings
     # context['form'] = form
     return render(request, 'services/service.html', context)
+
+def payment(request):
+    context = {
+        'token': PAYMENT_BACKEND.get_client_token(request.user),
+    }
+    return render(request, 'services/payment.html', context)
+
+def checkout(request):
+    if request.method != 'POST':
+        return redirect('/')
+
+    pm = PAYMENT_BACKEND.create_payment_method(request.user,
+            request.POST.get('payment_method_nonce'))
+    PAYMENT_BACKEND.create_transaction('10.00', pm.payment_method_token)
+    return render(request, 'services/payment_complete.html')
 
