@@ -40,3 +40,6 @@ class BraintreeBackend:
             'payment_method_token': token,
         })
 
+    def submit_settlement(self, transaction):
+        return braintree.Transaction.submit_for_settlement(transaction)
+
