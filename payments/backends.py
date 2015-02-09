@@ -35,11 +35,13 @@ class BraintreeBackend:
         })
 
     def create_transaction(self, amount, token):
+        """Create a new transaction using a payment method token"""
         return braintree.Transaction.sale({
             'amount': amount,
             'payment_method_token': token,
         })
 
     def submit_settlement(self, transaction):
+        """Submit a transaction for settlement and return the status"""
         return braintree.Transaction.submit_for_settlement(transaction)
 
