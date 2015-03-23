@@ -113,6 +113,11 @@ def service(request, service_id):
     # context['form'] = form
     return render(request, 'services/service.html', context)
 
+def manage(request):
+    if not request.user.is_authenticated:
+        return redirect('/')
+    return render(request, 'services/manage.html')
+
 def payment(request):
     context = {
         'token': PAYMENT_BACKEND.get_client_token(request.user),
