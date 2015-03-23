@@ -5,10 +5,7 @@ from math import sqrt
 from notdienste.settings import SUPPORT_EMAIL
 from services.models import *
 from services.util import *
-from payments.backends import BraintreeBackend
 # from .forms import CaptchaForm
-
-PAYMENT_BACKEND = BraintreeBackend()
 
 def index(request):
     categories = Category.objects.all()
@@ -87,6 +84,7 @@ def service(request, service_id):
     #         context['contact'] = 1
     # else:
     #     form = CaptchaForm()
+
     # Nutzer ist eingeloggt, hole bestehende Bewertung falls vorhanden
     if request.user.is_authenticated:
         try:
@@ -141,12 +139,7 @@ def checkout(request):
     if request.method != 'POST':
         return redirect('/')
 
-    pm = PAYMENT_BACKEND.create_payment_method(request.user,
-            request.POST.get('payment_method_nonce'))
-    tr = PAYMENT_BACKEND.create_transaction('10.00', pm.payment_method.token)
-    result = PAYMENT_BACKEND.submit_settlement(tr.transaction.id)
-
-    if result.is_success:
+    if create_payment(request.user, request.POST.get('payment_method_nonce')):
         return render(request, 'services/payment_complete.html')
     else:
         return render(request, 'services/payment_failed.html')
