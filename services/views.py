@@ -1,10 +1,10 @@
 from django.shortcuts import render, get_object_or_404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from notdienste.settings import SUPPORT_EMAIL
 from services.models import *
 from services.util import get_distances
 from services.payments import create_payment
+from services.paginator import paginate
 # from .forms import CaptchaForm
 
 def index(request):
@@ -53,15 +53,7 @@ Falle eines Fehlers kontaktieren sie uns bitte unter %s.
         slist += [(distances[service], service)]
     slist.sort()
 
-    # Paginate
-    paginator = Paginator(slist, 10)
-    page = request.GET.get('p')
-    try:
-        servicelist = paginator.page(page)
-    except PageNotAnInteger:
-        servicelist = paginator.page(1)
-    except EmptyPage:
-        servicelist = paginator.page(paginator.num_pages)
+    servicelist = paginate(slist, 10)
 
     context = {
         'plz': plz,
@@ -106,15 +98,7 @@ def service(request, service_id):
     # Ratings holen
     ratinglist = Rating.objects.filter(of=service).order_by('-at')
 
-    # Paginator
-    paginator = Paginator(ratinglist, 5)
-    page = request.GET.get('p')
-    try:
-        ratings = paginator.page(page)
-    except PageNotAnInteger:
-        ratings = paginator.page(1)
-    except EmptyPage:
-        ratings = paginator.page(paginator.num_pages)
+    ratings = paginate(ratinglist, 5)
 
     context['service'] = service
     context['ratings'] = ratings
