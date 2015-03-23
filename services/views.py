@@ -114,8 +114,8 @@ def service(request, service_id):
     return render(request, 'services/service.html', context)
 
 def manage(request):
-    if not request.user.is_authenticated:
-        return redirect('/')
+    if not request.user.is_authenticated: # FIXME
+        return redirect(index)
     return render(request, 'services/manage.html')
 
 def payment(request):

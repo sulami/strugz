@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'haystack',
     'payments',
     'services',
-    'users',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +54,7 @@ MIDDLEWARE_CLASSES = (
     'account.middleware.TimezoneMiddleware',
 )
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'services.User'
 
 ROOT_URLCONF = 'notdienste.urls'
 

@@ -1,6 +1,6 @@
 from django.db import models
 
-from users.models import User
+from services.models import User
 
 class Payment(models.Model):
     amount = models.IntegerField()

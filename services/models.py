@@ -1,5 +1,6 @@
-from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 class Category(models.Model):
     name = models.CharField(max_length=30)
@@ -47,3 +48,8 @@ class Rating(models.Model):
 
     def __unicode__(self):
         return self.by.username + '  - ' + self.of.name
+
+class User(AbstractUser):
+    provider = models.BooleanField(default=False)
+    favourites = models.ManyToManyField(Service, related_name='favourites')
+
