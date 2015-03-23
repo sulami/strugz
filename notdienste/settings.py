@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     'account',
     'haystack',
     'payments',
-    'renderer',
     'services',
     'users',
 )

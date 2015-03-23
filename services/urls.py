@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 
-from renderer import views
+from services import views
 
-urlpatterns = patterns('renderer.views',
+urlpatterns = patterns('services.views',
     url(r'^$', 'index', name='index'),
     url(r'^e/(\d)/$', 'search', name='search'),
     url(r'^c/(\d)/$', 'category', name='category'),

@@ -13,6 +13,6 @@ urlpatterns = patterns('',
     url(r'^logout/$', 'django.contrib.auth.views.logout',
         {'next_page': '/'},
         name='logout'),
-    url(r'', include('renderer.urls', namespace='renderer')),
+    url(r'', include('services.urls', namespace='services')),
 )
 
