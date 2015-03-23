@@ -1,3 +1,5 @@
+from math import sqrt
+
 def get_distances(plz, services):
     """Return a dict of services and their distance to a given PLZ"""
 

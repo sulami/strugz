@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from math import sqrt
 
 from notdienste.settings import SUPPORT_EMAIL
 from services.models import *
