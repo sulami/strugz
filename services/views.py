@@ -5,6 +5,7 @@ from services.models import *
 from services.util import get_distances
 from services.payments import create_payment
 from services.paginator import paginate
+from services.text import UNKNOWN_PLZ
 # from .forms import CaptchaForm
 
 def index(request):
@@ -34,10 +35,7 @@ def category(request, category_id):
 
     except:
         context = {
-            'error': """
-Dies scheint keine uns bekannte Postleitzahl zu sein. Im
-Falle eines Fehlers kontaktieren sie uns bitte unter %s.
-""".format(SUPPORT_EMAIL)
+            'error': UNKNOWN_PLZ.format(SUPPORT_EMAIL)
         }
 
         return render(request, 'error.html', context)
