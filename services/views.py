@@ -4,6 +4,7 @@ from math import sqrt
 
 from notdienste.settings import SUPPORT_EMAIL
 from services.models import *
+from services.util import *
 from payments.backends import BraintreeBackend
 # from .forms import CaptchaForm
 
@@ -45,30 +46,17 @@ Falle eines Fehlers kontaktieren sie uns bitte unter %s.
         return render(request, 'error.html', context)
 
     services = Service.objects.filter(category=category)
-    # GPS-Koordinaten aus DB lesen und zuweisen, Entfernungsberechnung
-    distances = {}
 
-    for service in services:
-        if service.lon <= plz.lon:
-            dlon = plz.lon - service.lon
-        else:
-            dlon = service.lon - plz.lon
-        if service.lat <= plz.lat:
-            dlat = plz.lat - service.lat
-        else:
-            dlat = service.lat - plz.lat
-        kdlon = dlon * 71.5
-        kdlat = dlat * 111.3
-        distances[service] = round(sqrt(kdlon * kdlon + kdlat * kdlat), 2)
+    distances = get_distances(plz, services)
 
+    # Put them in a list, so they are sortable, and sort them by
+    # distance.
     slist = []
     for service in distances:
         slist += [(distances[service], service)]
-
-    # Sortierung nach Entfernung
     slist.sort()
 
-    # Paginator
+    # Paginate
     paginator = Paginator(slist, 10)
     page = request.GET.get('p')
     try:
@@ -78,7 +66,6 @@ Falle eines Fehlers kontaktieren sie uns bitte unter %s.
     except EmptyPage:
         servicelist = paginator.page(paginator.num_pages)
 
-    # Rendering
     context = {
         'plz': plz,
         'category': category,
