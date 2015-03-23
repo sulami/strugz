@@ -11,29 +11,43 @@ PAYMENT_BACKEND = BraintreeBackend()
 
 def index(request):
     categories = Category.objects.all()
-    context = {'categories': categories}
+    context = {
+        'categories': categories
+    }
+
     return render(request, 'index.html', context)
 
 # Standorteingabe
 def search(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
-    context = {'category': category}
+    context = {
+        'category': category
+    }
+
     return render(request, 'services/search.html', context)
 
 # Ausgabe der Suchergebnisse einer Branche nach Naehe zu Standort
 def category(request, category_id):
     # Daten aufnehmen
     category = get_object_or_404(Category, pk=category_id)
+
     try:
         plz = Location.objects.get(plz=request.GET['plz'])
+
     except:
-        error = """Dies scheint keine uns bekannte Postleitzahl zu sein. Im \
-        Falle eines Fehlers kontaktieren sie uns bitte unter %s.""" % \
-        SUPPORT_EMAIL
-        return render(request, 'error.html', {'error': error})
+        context = {
+            'error': """
+Dies scheint keine uns bekannte Postleitzahl zu sein. Im
+Falle eines Fehlers kontaktieren sie uns bitte unter %s.
+""".format(SUPPORT_EMAIL)
+        }
+
+        return render(request, 'error.html', context)
+
     services = Service.objects.filter(category=category)
     # GPS-Koordinaten aus DB lesen und zuweisen, Entfernungsberechnung
     distances = {}
+
     for service in services:
         if service.lon <= plz.lon:
             dlon = plz.lon - service.lon
@@ -46,11 +60,14 @@ def category(request, category_id):
         kdlon = dlon * 71.5
         kdlat = dlat * 111.3
         distances[service] = round(sqrt(kdlon * kdlon + kdlat * kdlat), 2)
+
     slist = []
     for service in distances:
         slist += [(distances[service], service)]
+
     # Sortierung nach Entfernung
     slist.sort()
+
     # Paginator
     paginator = Paginator(slist, 10)
     page = request.GET.get('p')
@@ -60,13 +77,15 @@ def category(request, category_id):
         servicelist = paginator.page(1)
     except EmptyPage:
         servicelist = paginator.page(paginator.num_pages)
+
     # Rendering
     context = {
         'plz': plz,
         'category': category,
         'distances': distances,
         'servicelist': servicelist
-        }
+    }
+
     return render(request, 'services/category.html', context)
 
 # Seite eines Service-Providers
@@ -87,7 +106,7 @@ def service(request, service_id):
             r = Rating.objects.get(by=request.user,of=service)
             context['rating'] = r
         except:
-            pass
+            pass # FIXME WTF?
         # Bewertung wurde abgegeben/modifiziert
         if 'r' in request.GET:
             try:
@@ -98,8 +117,11 @@ def service(request, service_id):
             if 6 > int(r.stars) > 0:
                 r.save()
             context['rating'] = r
+
     # Ratings holen
     ratinglist = Rating.objects.filter(of=service).order_by('-at')
+
+    # Paginator
     paginator = Paginator(ratinglist, 5)
     page = request.GET.get('p')
     try:
@@ -108,20 +130,24 @@ def service(request, service_id):
         ratings = paginator.page(1)
     except EmptyPage:
         ratings = paginator.page(paginator.num_pages)
+
     context['service'] = service
     context['ratings'] = ratings
     # context['form'] = form
+
     return render(request, 'services/service.html', context)
 
 def manage(request):
     if not request.user.is_authenticated: # FIXME
         return redirect(index)
+
     return render(request, 'services/manage.html')
 
 def payment(request):
     context = {
         'token': PAYMENT_BACKEND.get_client_token(request.user),
     }
+
     return render(request, 'services/payment.html', context)
 
 def checkout(request):
@@ -132,6 +158,7 @@ def checkout(request):
             request.POST.get('payment_method_nonce'))
     tr = PAYMENT_BACKEND.create_transaction('10.00', pm.payment_method.token)
     result = PAYMENT_BACKEND.submit_settlement(tr.transaction.id)
+
     if result.is_success:
         return render(request, 'services/payment_complete.html')
     else:
