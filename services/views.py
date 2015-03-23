@@ -4,7 +4,8 @@ from math import sqrt
 
 from notdienste.settings import SUPPORT_EMAIL
 from services.models import *
-from services.util import *
+from services.util import get_distances
+from services.payments import create_payment
 # from .forms import CaptchaForm
 
 def index(request):
