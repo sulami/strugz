@@ -9,5 +9,11 @@ urlpatterns = patterns('services.views',
     url(r'^c/(\d)/$', 'category', name='category'),
     url(r'^s/(\d)/$', 'service', name='service'),
     url(r'^m/$', 'manage', name='manage'),
+    url(r'^m/p/$', 'payments', name='payments'),
+    url(r'^m/l/$', 'listings', name='listings'),
+    url(r'^m/b/$', 'bills', name='bills'),
+    url(r'^m/v/$', 'verification', name='verification'),
+    url(r'^m/pd/$', 'personal_data', name='personal_data'),
+    url(r'^m/pw/$', 'password', name='password'),
 )
 

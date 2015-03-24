@@ -99,3 +99,21 @@ def manage(request):
 
     return render(request, 'services/manage.html')
 
+def personal_data(request):
+    return "TBD"
+
+def verification(request):
+    return "TBD"
+
+def bills(request):
+    return "TBD"
+
+def listings(request):
+    return "TBD"
+
+def payments(request):
+    return "TBD"
+
+def password(request):
+    return "TBD"
+
