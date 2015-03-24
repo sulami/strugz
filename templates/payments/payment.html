@@ -2,7 +2,7 @@
 
 {% block content %}
 <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
-<form id="checkout" method="post" action="{% url 'renderer:checkout' %}">
+<form id="checkout" method="post" action="{% url 'payments:checkout' %}">
     {% csrf_token %}
     <div id="dropin"></div>
     <input type="submit" value="Pay $10">

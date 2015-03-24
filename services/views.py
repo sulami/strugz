@@ -1,9 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from notdienste.settings import SUPPORT_EMAIL
 from services.models import *
 from services.util import get_distances
-from services.payment import create_payment
 from services.paginator import paginate
 from services.text import UNKNOWN_PLZ
 # from .forms import CaptchaForm
@@ -99,20 +98,4 @@ def manage(request):
         return redirect('/')
 
     return render(request, 'services/manage.html')
-
-def payment(request):
-    context = {
-        'token': PAYMENT_BACKEND.get_client_token(request.user),
-    }
-
-    return render(request, 'services/payment.html', context)
-
-def checkout(request):
-    if request.method != 'POST':
-        return redirect('/')
-
-    if create_payment(request.user, request.POST.get('payment_method_nonce')):
-        return render(request, 'services/payment_complete.html')
-    else:
-        return render(request, 'services/payment_failed.html')
 

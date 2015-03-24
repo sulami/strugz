@@ -99,6 +99,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+from payments.backends import BraintreeBackend
+PAYMENT_BACKEND = BraintreeBackend()
+
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.solr_backend.SolrEngine',

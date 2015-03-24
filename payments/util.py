@@ -1,6 +1,4 @@
-from payments.backends import BraintreeBackend
-
-PAYMENT_BACKEND = BraintreeBackend()
+from notdienste.settings import PAYMENT_BACKEND
 
 def create_payment(user, nonce):
     """Create a payment and return success (hopefully)"""
