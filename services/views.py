@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from notdienste.settings import SUPPORT_EMAIL
 from services.models import *
 from services.util import get_distances
-from services.payments import create_payment
+from services.payment import create_payment
 from services.paginator import paginate
 from services.text import UNKNOWN_PLZ
 # from .forms import CaptchaForm
@@ -76,7 +76,7 @@ def service(request, service_id):
         except: # There is no past rating of this user for this service.
             pass
         if 'r' in request.GET:
-            rs = int(request.GET['r']
+            rs = int(request.GET['r'])
             try:
                 r.stars = rs
             except:
