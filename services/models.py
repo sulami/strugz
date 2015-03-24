@@ -18,6 +18,7 @@ class Location(models.Model):
         return str(self.plz) + ' - ' + self.name
 
 class Service(models.Model):
+    owner = models.ForeignKey('User')
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=50)
     desc = models.TextField(blank=True)
