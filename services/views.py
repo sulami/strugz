@@ -68,7 +68,7 @@ def service(request, service_id):
     # else:
     #     form = CaptchaForm()
 
-    if request.user.is_authenticated:
+    if request.user.is_authenticated():
         try:
             r = Rating.objects.get(by=request.user, of=service)
             context['rating'] = r
