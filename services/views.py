@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.hashers import check_password, make_password
 
 from notdienste.settings import SUPPORT_EMAIL
 from services.models import *
@@ -94,26 +95,38 @@ def service(request, service_id):
     return render(request, 'services/service.html', context)
 
 def manage(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated():
         return redirect('/')
 
     return render(request, 'services/manage.html')
 
 def personal_data(request):
+    if not request.user.is_authenticated():
+        return redirect('/')
+
     return "TBD"
 
 def verification(request):
+    if not request.user.is_authenticated():
+        return redirect('/')
+
     return "TBD"
 
 def bills(request):
+    if not request.user.is_authenticated():
+        return redirect('/')
+
     return "TBD"
 
 def listings(request):
+    if not request.user.is_authenticated():
+        return redirect('/')
+
     return "TBD"
 
 def payments(request):
-    return "TBD"
+    if not request.user.is_authenticated():
+        return redirect('/')
 
-def password(request):
     return "TBD"
 

@@ -14,6 +14,5 @@ urlpatterns = patterns('services.views',
     url(r'^m/b/$', 'bills', name='bills'),
     url(r'^m/v/$', 'verification', name='verification'),
     url(r'^m/pd/$', 'personal_data', name='personal_data'),
-    url(r'^m/pw/$', 'password', name='password'),
 )
 
