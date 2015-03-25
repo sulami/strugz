@@ -8,6 +8,9 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
 
+    def __str__(self):
+        return self.name
+
 class Location(models.Model):
     plz = models.IntegerField()
     lon = models.FloatField()
@@ -15,6 +18,9 @@ class Location(models.Model):
     name = models.CharField(max_length=50)
 
     def __unicode__(self):
+        return str(self.plz) + ' - ' + self.name
+
+    def __str__(self):
         return str(self.plz) + ' - ' + self.name
 
 class Service(models.Model):
@@ -30,6 +36,12 @@ class Service(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def __str__(self):
+        return self.name
+
+    def num_ratings(self):
+        return len(Rating.objects.filter(of=self))
 
     def average_rating(self):
         try:
@@ -50,7 +62,13 @@ class Rating(models.Model):
     def __unicode__(self):
         return self.by.username + '  - ' + self.of.name
 
+    def __str__(self):
+        return self.by.username + '  - ' + self.of.name
+
 class User(AbstractUser):
     provider = models.BooleanField(default=False)
     favourites = models.ManyToManyField(Service, related_name='favourites')
+
+    def num_services(self):
+        return len(Service.objects.filter(owner=self))
 
