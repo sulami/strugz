@@ -98,7 +98,11 @@ def manage(request):
     if not request.user.is_authenticated():
         return redirect('/')
 
-    return render(request, 'services/manage.html')
+    context = {
+        'listings': Service.objects.filter(owner=request.user)
+    }
+
+    return render(request, 'services/manage.html', context)
 
 def personal_data(request):
     if not request.user.is_authenticated():
@@ -111,10 +115,4 @@ def verification(request):
         return redirect('/')
 
     return render(request, 'services/verification.html')
-
-def listings(request):
-    if not request.user.is_authenticated():
-        return redirect('/')
-
-    return render(request, 'services/listings.html')
 

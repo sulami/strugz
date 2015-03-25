@@ -14,24 +14,22 @@
 
     <div style="float: left; text-align: center; width: 50%">
         <div style="font-size: 5em; line-height: 1em">
-            2
+            {{ user.num_services }}
         </div>
         Anzeigen aktiv
     </div>
 
     <div>
+    {% for lst in listings %}
         <div>
-            <h4>Schlüssel Schmidt</h4>
-            <li>Branche: Schlüsseldienst</li>
-            <li>Bewertungen: <a href="">143 (4.4&#x2605)</a></li>
-        </div>
-
-        <div>
-            <h4>Schlüssel Schuster</h4>
-            <li>Branche: Schlüsseldienst</li>
-            <li>Bewertungen: <a href="">23 (4.8&#x2605)</a></li>
+            <h4>{{ lst.name }}</h4>
+            <li>Branche: {{ lst.category }}</li>
+            <li>Bewertungen: <a href="">{{ lst.num_ratings }} ({{ lst.average_rating }}&#x2605)</a></li>
         </div>
     </div>
+    {% empty %}
+        Sie bieten im Moment keine Services an.
+    {% endfor %}
 </div>
 
 <!-- list-style: none -->
@@ -39,7 +37,6 @@
     <div>
         <h4>Anzeigenverwaltung</h4>
         <li><a href="{% url 'payments:list' %}">Zahlungen verwalten</a></li>
-        <li><a href="{% url 'services:listings' %}">Anzeigen aktivieren/deaktivieren</a></li>
     </div>
 
     <div>
