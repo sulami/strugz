@@ -2,5 +2,12 @@
 {% block title %}Zahlungen - {% endblock %}
 
 {% block content %}
+{% for p in payments %}
+    <div>
+    {{ p.pretty }} <a href="{% url 'payments:bill' p.pk %}">Rechnung ausdrucken</a>
+    </div>
+{% empty %}
+    Sie haben noch keine Zahlungen getätigt.
+{% endfor %}
 {% endblock %}
 

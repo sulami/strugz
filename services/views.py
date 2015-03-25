@@ -112,12 +112,6 @@ def verification(request):
 
     return render(request, 'services/verification.html')
 
-def bills(request):
-    if not request.user.is_authenticated():
-        return redirect('/')
-
-    return render(request, 'services/bills.html')
-
 def listings(request):
     if not request.user.is_authenticated():
         return redirect('/')

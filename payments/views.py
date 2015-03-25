@@ -1,13 +1,31 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from notdienste.settings import PAYMENT_BACKEND
+from payments.models import Payment
 from payments.util import create_payment
+from services.models import User
 
 def list(request):
     if not request.user.is_authenticated():
         return redirect('/')
 
-    return render(request, 'payments/list.html')
+    payments = Payment.objects.filter(user=request.user).order_by('-date')
+
+    context = {
+        'payments': payments,
+    }
+
+    return render(request, 'payments/list.html', context)
+
+def bill(request, pid):
+    if not request.user.is_authenticated():
+        return redirect('/')
+
+    payment = get_object_or_404(Payment, pk=pid)
+
+    # TODO Generate a bill to print out.
+
+    return render(request, 'services/bill.html')
 
 def payment(request):
     context = {
