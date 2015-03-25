@@ -46,7 +46,7 @@ def category(request, category_id):
     for service in distances:
         slist += [(distances[service], service)]
     slist.sort()
-    servicelist = paginate(slist, 10)
+    servicelist = paginate(slist, 10, request.GET.get('p'))
 
     context = {
         'plz': plz,
@@ -86,7 +86,8 @@ def service(request, service_id):
                 r.save()
             context['rating'] = r
 
-    ratings = paginate(Rating.objects.filter(of=service).order_by('-at'), 5)
+    ratings = paginate(Rating.objects.filter(of=service).order_by('-at'), 5,
+                       request.GET.get('p'))
 
     context['service'] = service
     context['ratings'] = ratings
