@@ -3,6 +3,12 @@ from django.shortcuts import render, redirect
 from notdienste.settings import PAYMENT_BACKEND
 from payments.util import create_payment
 
+def list(request):
+    if not request.user.is_authenticated():
+        return redirect('/')
+
+    return render(request, 'payments/list.html')
+
 def payment(request):
     context = {
         'token': PAYMENT_BACKEND.get_client_token(request.user),

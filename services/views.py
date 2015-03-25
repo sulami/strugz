@@ -104,29 +104,23 @@ def personal_data(request):
     if not request.user.is_authenticated():
         return redirect('/')
 
-    return "TBD"
+    return render(request, 'services/personal_data.html')
 
 def verification(request):
     if not request.user.is_authenticated():
         return redirect('/')
 
-    return "TBD"
+    return render(request, 'services/verification.html')
 
 def bills(request):
     if not request.user.is_authenticated():
         return redirect('/')
 
-    return "TBD"
+    return render(request, 'services/bills.html')
 
 def listings(request):
     if not request.user.is_authenticated():
         return redirect('/')
 
-    return "TBD"
-
-def payments(request):
-    if not request.user.is_authenticated():
-        return redirect('/')
-
-    return "TBD"
+    return render(request, 'services/listings.html')
 
