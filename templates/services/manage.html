@@ -41,7 +41,9 @@
 
     <div>
         <h4>Accountverwaltung</h4>
-        <li><a href="{% url 'services:verification' %}" style="font-weight: bold">Account verifizieren</a></li>
+        {% if not user.verified %}
+            <li><a href="{% url 'services:verification' %}" style="font-weight: bold">Account verifizieren</a></li>
+        {% endif %}
         <li><a href="{% url 'services:personal_data' %}">Persönliche Daten verwalten</a></li>
         <li><a href="{% url 'auth_password_change' %}">Passwort ändern</a></li>
     </div>

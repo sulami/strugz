@@ -125,5 +125,9 @@ def verification(request):
     if not request.user.is_authenticated():
         return redirect('/')
 
+    if request.user.verified:
+        return redirect('services:manage')
+
     return render(request, 'services/verification.html')
+
 
