@@ -1,0 +1,28 @@
+{% extends 'skeleton.html' %}
+
+{% block title %}Persönliche Daten - {% endblock %}
+
+{% block content %}
+<div style="text-align: center">
+    <form action="." method="POST">
+        <h4>Persönliche Daten</h4>
+        <table style="margin: auto; width: 600px">
+        {{ pdform.as_table }}
+        </table>
+
+        <h4>Rechnungsadresse</h4>
+        <table style="margin: auto; width: 600px">
+        {{ paform.as_table }}
+        </table>
+
+        <h4>Rechnungsadresse</h4>
+        <table style="margin: auto; width: 600px">
+        {{ baform.as_table }}
+        </table>
+
+        {% csrf_token %}
+        <input type="Submit" />
+    </form>
+</div>
+{% endblock %}
+

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.hashers import check_password, make_password
 
 from notdienste.settings import SUPPORT_EMAIL
+from services.forms import PersonalDataForm, AddressForm
 from services.models import *
 from services.util import get_distances
 from services.paginator import paginate
@@ -109,7 +110,16 @@ def personal_data(request):
     if not request.user.is_authenticated():
         return redirect('/')
 
-    return render(request, 'services/personal_data.html')
+    # TODO Checking POST for submitted data, saving this into models
+    # that have yet to be created.
+
+    context = {
+        'pdform': PersonalDataForm,
+        'paform': AddressForm,
+        'baform': AddressForm,
+    }
+
+    return render(request, 'services/personal_data.html', context)
 
 def verification(request):
     if not request.user.is_authenticated():
