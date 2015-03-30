@@ -84,6 +84,8 @@ USE_TZ = True
 
 SUPPORT_EMAIL = 'wudelea'
 
+MONTHLY_PRIZE = "10"
+
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )

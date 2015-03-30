@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
-from notdienste.settings import PAYMENT_BACKEND
+from notdienste.settings import PAYMENT_BACKEND, MONTHLY_PRIZE
 from payments.models import Payment
 from payments.util import create_payment
 from services.models import User
@@ -38,7 +38,13 @@ def checkout(request):
     if request.method != 'POST':
         return redirect('/')
 
-    if create_payment(request.user, request.POST.get('payment_method_nonce')):
+    if create_payment(request.user, request.POST.get('payment_method_nonce'),
+        MONTHLY_PRIZE):
+        p = Payment()
+        p.user = request.user
+        p.amount = MONTHLY_PRIZE
+        p.save()
+
         return render(request, 'payments/payment_complete.html')
     else:
         return render(request, 'payments/payment_failed.html')
