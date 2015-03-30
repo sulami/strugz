@@ -5,7 +5,7 @@
 <form id="checkout" method="post" action="{% url 'payments:checkout' %}">
     {% csrf_token %}
     <div id="dropin"></div>
-    <input type="submit" value="Pay $10">
+    <input type="submit" />
 </form>
 <script>
 braintree.setup("{{ token }}", 'dropin', { container: 'dropin' });
