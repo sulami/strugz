@@ -25,16 +25,17 @@
         Anzeigen aktiv
     </div>
 
-    <div>
-    {% for lst in listings %}
-        <div>
-            <h4>{{ lst.name }}</h4>
-            <li>Branche: {{ lst.category }}</li>
-            <li>Bewertungen: <a href="">{{ lst.num_ratings }} ({{ lst.average_rating }}&#x2605)</a></li>
-        </div>
-    {% empty %}
-        Sie bieten im Moment keine Services an.
-    {% endfor %}
+    <div style="clear: both">
+        <h3>Services</h3>
+        {% for lst in listings %}
+            <div>
+                <h4>{{ lst.name }}</h4>
+                <li>Branche: {{ lst.category }}</li>
+                <li>Bewertungen: <a href="">{{ lst.num_ratings }} ({{ lst.average_rating }}&#x2605)</a></li>
+            </div>
+        {% empty %}
+            Sie bieten im Moment keine Services an.
+        {% endfor %}
     </div>
 </div>
 
