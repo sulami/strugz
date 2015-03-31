@@ -70,7 +70,7 @@ class User(AbstractUser):
     favourites = models.ManyToManyField(Service, related_name='favourites')
     verified = models.BooleanField(default=False)
     subscribed = models.BooleanField(default=False) # Yearly subscription
-    payed = models.IntegerField(default=0)
+    paid = models.IntegerField(default=0)
 
     def num_services(self):
         return len(Service.objects.filter(owner=self))
