@@ -41,6 +41,7 @@ def checkout(request):
     if create_payment(request.user, request.POST.get('payment_method_nonce'),
         MONTHLY_PRIZE):
         p = Payment()
+        p.yearly = False # This is a monthly payment.
         p.user = request.user
         p.amount = MONTHLY_PRIZE
         p.save()

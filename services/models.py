@@ -69,6 +69,7 @@ class User(AbstractUser):
     provider = models.BooleanField(default=False)
     favourites = models.ManyToManyField(Service, related_name='favourites')
     verified = models.BooleanField(default=False)
+    subscribed = models.BooleanField(default=False) # Yearly subscription
 
     def num_services(self):
         return len(Service.objects.filter(owner=self))
