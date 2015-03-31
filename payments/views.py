@@ -28,6 +28,9 @@ def bill(request, pid):
     return render(request, 'services/bill.html')
 
 def payment(request):
+    if not request.user.is_authenticated():
+        return redirect('/')
+
     context = {
         'token': PAYMENT_BACKEND.get_client_token(request.user),
     }
@@ -35,7 +38,7 @@ def payment(request):
     return render(request, 'payments/payment.html', context)
 
 def checkout(request):
-    if request.method != 'POST':
+    if request.method != 'POST' or not request.user.is_authenticated():
         return redirect('/')
 
     if create_payment(request.user, request.POST.get('payment_method_nonce'),
