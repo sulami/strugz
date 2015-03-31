@@ -46,6 +46,9 @@ def checkout(request):
         p.amount = MONTHLY_PRIZE
         p.save()
 
+        request.user.payed += 30
+        request.user.save()
+
         return render(request, 'payments/payment_complete.html')
     else:
         return render(request, 'payments/payment_failed.html')
