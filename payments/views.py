@@ -56,4 +56,9 @@ def checkout(request):
     else:
         return render(request, 'payments/payment_failed.html')
 
+def subscription(request):
+    if not request.user.is_authenticated():
+        return redirect('/')
+
+    return render(request, 'payments/subscription.html')
 

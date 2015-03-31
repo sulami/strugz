@@ -8,5 +8,6 @@ urlpatterns = patterns('payments.views',
     url(r'^b/(\d)$', 'bill', name='bill'),
     url(r'^p/$', 'payment', name='payment'),
     url(r'^co/$', 'checkout', name='checkout'),
+    url(r'^s/$', 'subscription', name='subscription'),
 )
 

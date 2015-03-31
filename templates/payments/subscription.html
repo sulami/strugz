@@ -1,0 +1,14 @@
+{% extends 'skeleton.html' %}
+
+{% block title %}Jährliche Zahlung{% endblock %}
+
+{% block content %}
+
+{% if user.subscribed %}
+    User is subscribed.
+{% else %}
+    User is not subscribed.
+{% endif %}
+
+{% endblock %}
+

@@ -14,7 +14,7 @@
         <a href="{% url 'payments:payment' %}">Jetzt mehr Tage kaufen</a>
         {% if not user.subscribed %}
             <br />
-            <a href="">Upgraden auf jährliche Zahlung</a>
+            <a href="{% url 'payments:subscription' %}">Upgraden auf jährliche Zahlung</a>
         {% endif %}
     </div>
 
