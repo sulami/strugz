@@ -26,10 +26,10 @@
             <li>Branche: {{ lst.category }}</li>
             <li>Bewertungen: <a href="">{{ lst.num_ratings }} ({{ lst.average_rating }}&#x2605)</a></li>
         </div>
-    </div>
     {% empty %}
         Sie bieten im Moment keine Services an.
     {% endfor %}
+    </div>
 </div>
 
 <!-- list-style: none -->
