@@ -60,5 +60,16 @@ def subscription(request):
     if not request.user.is_authenticated():
         return redirect('/')
 
+    if request.method == 'POST':
+        if request.POST.get('sub')  and not request.user.subscribed:
+            request.user.subscribed = True
+            request.user.save()
+            # TODO generate a bill and send it
+            # TODO indicate success
+        elif request.POST.get('unsub') and request.user.subscribed:
+            request.user.subscribed = False
+            request.user.save()
+            # TODO indicate success
+
     return render(request, 'payments/subscription.html')
 

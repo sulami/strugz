@@ -5,9 +5,31 @@
 {% block content %}
 
 {% if user.subscribed %}
-    User is subscribed.
+    [[ User is subscribed. ]]
+
+    <br />
+
+    <form action="." method="POST">
+        {% csrf_token %}
+        <input type="checkbox" name="unsub" />
+        Ich will mein bestehendes Abonnement kündigen.
+        <br />
+        <input type="submit" />
+    </form>
 {% else %}
-    User is not subscribed.
+    [[ User is not subscribed. ]]
+
+    <br />
+
+    TODO: Add some info about the subscription.
+
+    <form action="." method="POST">
+        {% csrf_token %}
+        <input type="checkbox" name="sub" />
+        Ich will ein Abonnement abschließen.
+        <br />
+        <input type="submit" />
+    </form>
 {% endif %}
 
 {% endblock %}
